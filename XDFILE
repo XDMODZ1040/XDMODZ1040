@@ -1,0 +1,5 @@
+getglobal={game}true
+getglobal={animation}true
+getglobal={ClassesDex}true<>false
+getglobal={system}true
+getglobal={import}true
