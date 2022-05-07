@@ -2,7 +2,7 @@ local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/daw
 
 local win = DiscordLib:Window("Discord")
 
-local serv = win:Server("EDITION HUB V1.0", "")
+local serv = win:Server("PHOENIX HUB V1.0", "")
 
 local btns = serv:Channel("Info")
 
