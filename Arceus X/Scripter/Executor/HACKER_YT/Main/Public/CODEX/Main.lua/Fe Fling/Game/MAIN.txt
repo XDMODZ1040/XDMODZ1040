@@ -1,3 +1,14 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{
+
+    Title = "CREDIT";
+
+    Text = "MADE BY HACKER_YT";
+
+    Duration = 10;
+
+})
+
+wait(9)
 local player = game.Players.LocalPlayer
 
 local character1 = player.Character
@@ -130,4 +141,14 @@ spawn(function()
 
 end)
 
-print"ORPLAYZ SCRIPT LOADED"
+print"HACKER_YT SCRIPT LOADED"
+
+game:GetService("StarterGui"):SetCore("SendNotification",{
+
+    Title = "CONVERT SCRIPT";
+
+    Text = "HACKER_YT";
+
+    Duration = 10;
+
+})
