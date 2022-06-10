@@ -2,18 +2,18 @@ game.StarterGui:SetCore("SendNotification", {
 	Title = "CREDIT";
 	Text = "MADE BY HACKER_YT";
 	Duration = 60; })
-
-game.StarterGui:SetCore("SendNotification", {
-    Title = "NAME SCRIPT?"
-    Text = "FE FORCE SCRIPT"
-    Duration = 60; })
-
-game.StarterGui:SetCore("SendNotification", {
-    Title = "DESCRIPTION"
-    Text = "PRESS [K] TO TRANSFORM"
-    Duration = 60; })
-
-wait(5)
+--MADE BY HACKER_YT
+--NO NEED NETLESS
+--FE FORCE BLACK
+--PRESS [ K ] TO TRANSFORM
+--PRESS [ K ] AGAIN TO RE-TRANSFORM
+--JOIN MY DISCORD SERVER
+--SUBSCRIBE
+--LIKE
+--TURN ON NOTIFICATION BELL
+--I WILL MAKE SCRIPT
+--THANKS TO MOONSEC OBFUSCATOR
+wait(1)
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then game:GetService("RunService").Heartbeat:connect(function() v.Velocity = Vector3.new(-30,0,0) end) end end game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Netless"; Text = "Netless Loaded"; Icon = ""}) Duration = 16;
 
 local Vector3_101 = Vector3.new(1, 0, 1)
@@ -2325,6 +2325,7 @@ end)
 char:FindFirstChild("Humanoid").Died:connect(function()
 	game:GetService("RunService"):UnbindFromRenderStep("anims")
 	print("HACKER_YT SCRIPT SHOWCASER")
+		
 game.StarterGui:SetCore("SendNotification", {
 	Title = "CONVERT SCRIPT";
 	Text = "HACKER_YT";
