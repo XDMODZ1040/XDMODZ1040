@@ -133,7 +133,7 @@ local function Shoot(firstPos,nextPos,Revolver)
     end
 end
 
-local library = loadstring(game:HttpGet('https://pastebin.com/raw/iRY40ktw'))()
+--local library = loadstring(game:HttpGet('https://pastebin.com/raw/iRY40ktw'))()
 
 local wd = library.CreateWindow({Name = "CHAOS Script"})
 local pg1 = wd.CreatePage({Name = "Main Scripts"})
