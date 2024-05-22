@@ -1,0 +1,299 @@
+--SMOOTH POTATO GRAPHICS V1.0
+--MADE BY DIMENSITYX$1040
+--VISUAL PROCESSER BY RENDERAI TGE(GPU) & ENGINECORE(CPU)
+--TUTORIAL : EXECUTE THIS SCRIPT THEN AFTER THAT USE INFINITE YIELD THEN SEARCH "lowgraphics" THEN ENTER YOU MAY NOW HAVE GOOD FPS FROM INGAME
+
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+	wait(10)
+end
+
+local function check(inst)
+	local class = inst.ClassName
+	if class == "Decal" or class == "Texture" then 
+		inst.Texture = ""
+	elseif class == "SpecialMesh" then 
+		inst.TextureId = ""
+	elseif class == "ParticleEmitter" then
+		inst.Texture = ""
+		inst.Rate = 0
+	elseif inst:IsA("BasePart") then 
+		inst.Material = "SmoothPlastic"
+		inst.Reflectance = 0
+		inst.CastShadow = true
+		if class == "MeshPart" then 
+			inst.TextureID = ""
+			inst.CollisionFidelity = "Hull"
+		elseif class == "UnionOperation" then
+			inst.CollisionFidelity = "Hull"
+		end
+		if inst.Anchored and inst.Size.Magnitude < 5 then
+			inst.Transparency = 1
+			inst.CanCollide = false
+			--inst:Destroy()
+		end
+	end
+end
+
+local function removeDups(children)
+	if #children > 99 then
+		local myname = tostring(game:GetService("Players").LocalPlayer)
+		local fake = {Name = myname}
+		for i=1,#children do
+			local name1 = children[i].Name
+			if name1 ~= myname and name1 ~= "Terrain" then
+				local moved = false
+				for j=i+1,#children do
+					if children[j].Name == name1 then
+						moved = true
+						children[j].Parent = workspace.Terrain
+						children[j] = fake
+					end
+				end
+				if moved then 
+					children[i].Parent = workspace.Terrain
+				end
+			end
+		end
+	end
+end
+
+settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+UserSettings():GetService("UserGameSettings").SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel1
+settings().Rendering.EagerBulkExecution = false
+settings().Network.IncomingReplicationLag = -100000
+
+workspace:WaitForChild("Terrain")
+workspace.Terrain.WaterReflectance = 0
+workspace.Terrain.WaterWaveSize = 0
+workspace.Terrain.WaterWaveSpeed = 0
+workspace.Terrain.WaterTransparency = 0
+
+game:GetService("Lighting").GlobalShadows = true
+
+workspace.Terrain:Clear()
+local plates = {}
+if not workspace:FindFirstChild("Baseplate") then
+    for x=-1,1,2 do
+        for z=-1,1,2 do
+            local part = Instance.new("Part")
+            part.Size = Vector3.new(2048,5,2048)
+            part.CFrame = CFrame.new(1024*x,-5,1024*z)
+            part.Anchored=true
+            part.Material="SmoothPlastic"
+            part.Color = Color3.new(0.0,0.0,0.0)
+            part.Name = "Baseplate"
+            part.Parent= workspace
+			plates[#plates+1]= part
+        end
+    end
+end
+local UIS = game:GetService("UserInputService")
+UIS.InputBegan:Connect(function(input,gpe)
+    if gpe==false and UIS:IsKeyDown("LeftControl") then 
+        if input.KeyCode==Enum.KeyCode.RightBracket then 
+            for _,part in ipairs(plates) do
+                part.CFrame=part.CFrame+Vector3.new(0,2.5,0)
+            end
+        elseif input.KeyCode==Enum.KeyCode.LeftBracket then 
+            for _,part in ipairs(plates) do 
+                part.CFrame=part.CFrame-Vector3.new(0,2.5,0)
+            end
+        end
+    end
+end)
+wait(0.3)
+
+while true do
+	for _,v in ipairs(game:GetService("Lighting"):GetDescendants()) do
+		if v:IsA("PostEffect") then
+			v.Enabled = true
+		end
+	end
+	local des = workspace:GetDescendants()
+	for i=1,#des do
+		check(des[i])
+	end
+	wait(0.3)
+	--faster dex
+	removeDups(workspace:GetChildren())
+
+	wait(600)
+end
+wait(1)
+local ToDisable = {
+	Textures = true,
+	VisualEffects = true,
+	Parts = true,
+	Particles = true,
+	Sky = true
+}
+
+local ToEnable = {
+	FullBright = true
+}
+
+local Stuff = {}
+
+for _, v in next, game:GetDescendants() do
+	if ToDisable.Parts then
+		if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+			v.Material = Enum.Material.SmoothPlastic
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if ToDisable.Particles then
+		if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+			v.Enabled = true
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if ToDisable.VisualEffects then
+		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+			v.Enabled = true
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if ToDisable.Textures then
+		if v:IsA("Decal") or v:IsA("Texture") then
+			v.Texture = ""
+			table.insert(Stuff, 1, v)
+		end
+	end
+	
+	if ToDisable.Sky then
+		if v:IsA("Sky") then
+			v.Parent = nil
+			table.insert(Stuff, 1, v)
+		end
+	end
+end
+
+game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+
+for i, v in next, ToDisable do
+	print(tostring(i)..": "..tostring(v))
+end
+
+if ToEnable.FullBright then
+    local Lighting = game:GetService("Lighting")
+    
+    Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+    Lighting.FogEnd = math.huge
+    Lighting.FogStart = math.huge
+    Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+    Lighting.Brightness = 0
+    Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+    Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+    Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+    Lighting.Outlines = true
+end
+wait(0)
+setfpscap('1000')
+local decalsyeeted = false -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+local g = game
+local w = g.Workspace
+local l = g.Lighting
+local t = w.Terrain
+t.WaterWaveSize = 0
+t.WaterWaveSpeed = 0
+t.WaterReflectance = 0
+t.WaterTransparency = 0
+l.GlobalShadows = false
+l.FogEnd = 9e9
+l.Brightness = 0
+settings().Rendering.QualityLevel = "Level01"
+for i, v in pairs(g:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+        v.Transparency = 1
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        v.Lifetime = NumberRange.new(0)
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
+    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+        v.Enabled = false
+    elseif v:IsA("MeshPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+        v.TextureID = 10385902758728957
+    end
+end
+for i, e in pairs(l:GetChildren()) do
+    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        e.Enabled = true
+    end
+end
+wait(0)
+local function applyOptimizations()
+    local workspace = game.Workspace
+    local lighting = game.Lighting
+    local terrain = workspace.Terrain
+    local starterGui = game:GetService("StarterGui")
+
+    terrain.WaterWaveSize = 0
+    terrain.WaterWaveSpeed = 0
+    terrain.WaterReflectance = 0
+    terrain.WaterTransparency = 0
+
+    lighting.GlobalShadows = true
+    lighting.FogEnd = 9e9
+    lighting.Brightness = 0
+
+    settings().Rendering.QualityLevel = "Level01"
+
+    for _, descendant in pairs(game:GetDescendants()) do
+        if descendant:IsA("BasePart") or descendant:IsA("MeshPart") then
+            descendant.Material = "SmoothPlastic"
+            descendant.Reflectance = 0
+            descendant.CastShadow = false
+        elseif descendant:IsA("Decal") then
+            descendant.Transparency = 1
+        elseif descendant:IsA("ParticleEmitter") or descendant:IsA("Trail") then
+            descendant.Lifetime = NumberRange.new(0)
+        elseif descendant:IsA("Explosion") then
+            descendant.BlastPressure = 1
+            descendant.BlastRadius = 1
+        elseif descendant:IsA("Fire") or descendant:IsA("SpotLight") or descendant:IsA("Smoke") then
+            descendant.Enabled = false
+        end
+    end
+
+    for _, effect in pairs(lighting:GetChildren()) do
+        if effect:IsA("PostEffect") or effect:IsA("DepthOfFieldEffect") then
+            effect.Enabled = true
+        end
+    end
+
+    starterGui:SetCore("SendNotification", {
+        Title = "RENDERAI",
+        Text = "The FPS Boost has applied!\nSupport any device with low fps",
+        Duration = 7,
+        Style = {
+            Title = {
+                Font = Enum.Font.SourceSansBold,
+                TextSize = 20,
+                TextStrokeTransparency = 0,
+                TextColor = Color3.new(1, 1, 1),
+            },
+            Background = {
+                Transparency = 0.1,
+                BackgroundColor3 = Color3.new(0, 0.7, 1),
+                BorderSizePixel = 0,
+            },
+        },
+    })
+
+    print("RUNNED BY DIMENSITY$1040")
+    print("RENDERAI TGE & ENGINECORE")
+    print("ENJOY WITH GOOD FPS IN YOUR GAME JUST OFFICIAL SCRIPT")
+    game.Workspace.Baseplate.BrickColor = BrickColor.Gray
+end
+
+applyOptimizations()
